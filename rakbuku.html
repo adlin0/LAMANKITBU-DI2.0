@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>KIT BUDI - Rak Buku</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+
+        /* ========================================
+           HALAMAN RAK BUKU
+        ======================================== */
+
+        .rakbuku-page {
+            width: 100%;
+            min-height: 100vh;
+
+            padding: 25px 50px;
+
+            text-align: center;
+
+            background-image: url("assets/images/background-rakbuku.png");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            display: flex;
+            flex-direction: column;
+
+            position: relative;
+            isolation: isolate;
+        }
+
+
+        /* ========================================
+           HEADER
+        ======================================== */
+
+        .rakbuku-header {
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 20px;
+
+            position: relative;
+            z-index: 5;
+        }
+
+
+        .rakbuku-logo {
+            width: 130px;
+            height: auto;
+
+            display: block;
+        }
+
+
+        /* ========================================
+           BUTANG HEADER
+        ======================================== */
+
+        .rakbuku-header-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+
+        /* ========================================
+           BUTANG MUZIK - LOGO SAHAJA
+        ======================================== */
+
+        .rakbuku-page .music-button {
+            width: 55px;
+            height: 55px;
+
+            padding: 0;
+
+            border: none;
+            border-radius: 50%;
+
+            background: #2f7d65;
+            color: white;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transition: transform 0.2s ease;
+        }
+
+
+        .rakbuku-page .music-button:hover {
+            transform: scale(1.1);
+        }
+
+
+        /* ========================================
+           BUTANG HALAMAN UTAMA
+        ======================================== */
+
+        .home-button {
+            background: #e49b35;
+
+            padding: 14px 28px;
+
+            border: none;
+            border-radius: 28px;
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: transform 0.2s ease;
+        }
+
+
+        .home-button:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* ========================================
+           KANDUNGAN UTAMA
+        ======================================== */
+
+        .rakbuku-content {
+            width: 100%;
+            max-width: 1400px;
+
+            min-height: calc(100vh - 150px);
+
+            margin: 0 auto;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* ========================================
+           TAJUK
+        ======================================== */
+
+        .rakbuku-content h1 {
+            color: #263b70;
+
+            font-size: 48px;
+
+            margin: 0 0 15px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .rakbuku-content .subtitle {
+            color: #333;
+
+            font-size: 20px;
+
+            margin: 0 0 50px;
+        }
+
+
+        /* ========================================
+           PILIHAN TAHAP
+        ======================================== */
+
+        .level-container {
+            width: 100%;
+            max-width: 1250px;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 45px;
+
+            margin: 0 auto;
+        }
+
+
+        /* ========================================
+           CARD
+        ======================================== */
+
+        .level-card {
+            min-height: 440px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            padding: 55px 50px;
+
+            border-radius: 30px;
+
+            border: 3px solid rgba(230, 170, 70, 0.40);
+
+            box-shadow: 0 12px 35px rgba(70, 50, 25, 0.15);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .level-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow: 0 18px 40px rgba(70, 50, 25, 0.20);
+        }
+
+
+        /* ========================================
+           ICON
+        ======================================== */
+
+        .level-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+        }
+
+
+        /* ========================================
+           TAJUK CARD
+        ======================================== */
+
+        .level-card h2 {
+            color: #263b70;
+
+            font-size: 32px;
+
+            margin: 0 0 20px;
+        }
+
+
+        /* ========================================
+           PENERANGAN CARD
+        ======================================== */
+
+        .level-card p {
+            max-width: 480px;
+            min-height: 80px;
+
+            color: #444;
+
+            font-size: 18px;
+            line-height: 1.8;
+
+            margin: 0 0 25px;
+        }
+
+
+        /* ========================================
+           BUTANG TAHAP
+        ======================================== */
+
+        .level-button {
+            min-width: 310px;
+
+            padding: 18px 35px;
+
+            border: none;
+            border-radius: 35px;
+
+            color: white;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .rendah-button {
+            background: #e69b38;
+        }
+
+
+        .sederhana-button {
+            background: #405caa;
+        }
+
+
+        .level-button:hover {
+            transform: scale(1.05);
+
+            box-shadow: 0 9px 20px rgba(0, 0, 0, 0.20);
+        }
+
+
+        /* ========================================
+           BUTANG TAMBAHAN
+        ======================================== */
+
+        .extra-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            gap: 25px;
+
+            margin-top: 40px;
+        }
+
+
+        .extra-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            min-width: 230px;
+
+            padding: 17px 30px;
+
+            border-radius: 35px;
+
+            text-decoration: none;
+            color: white;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            border: none;
+            cursor: pointer;
+
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .score-button {
+            background: #36a653;
+        }
+
+
+        .feedback-button {
+            background: #d56b91;
+        }
+
+
+        .extra-button:hover {
+            transform: translateY(-4px) scale(1.03);
+
+            box-shadow: 0 9px 18px rgba(0, 0, 0, 0.18);
+        }
+
+
+        /* ========================================
+           TABLET
+        ======================================== */
+
+        @media (max-width: 1000px) {
+
+            .rakbuku-page {
+                padding: 25px 30px;
+                background-attachment: scroll;
+            }
+
+
+            .rakbuku-content h1 {
+                font-size: 40px;
+            }
+
+
+            .level-container {
+                max-width: 1000px;
+                gap: 30px;
+            }
+
+
+            .level-card {
+                min-height: 400px;
+                padding: 45px 30px;
+            }
+
+
+            .level-icon {
+                font-size: 80px;
+            }
+
+
+            .level-card h2 {
+                font-size: 27px;
+            }
+
+
+            .level-card p {
+                font-size: 16px;
+            }
+
+
+            .level-button {
+                min-width: 260px;
+            }
+
+        }
+
+
+        /* ========================================
+           MOBILE
+        ======================================== */
+
+        @media (max-width: 700px) {
+
+            .rakbuku-page {
+                padding: 15px;
+
+                background-attachment: scroll;
+                background-position: center center;
+            }
+
+
+            .rakbuku-header {
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+
+            .rakbuku-logo {
+                width: 80px;
+            }
+
+
+            .rakbuku-header-buttons {
+                gap: 8px;
+            }
+
+
+            .rakbuku-page .music-button {
+                width: 45px;
+                height: 45px;
+
+                font-size: 20px;
+            }
+
+
+            .home-button {
+                padding: 10px 13px;
+                font-size: 11px;
+            }
+
+
+            .rakbuku-content {
+                min-height: auto;
+                padding: 50px 0 30px;
+            }
+
+
+            .rakbuku-content h1 {
+                font-size: 30px;
+            }
+
+
+            .rakbuku-content .subtitle {
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 30px;
+            }
+
+
+            .level-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+
+            .level-card {
+                min-height: auto;
+
+                padding: 40px 20px;
+
+                border-radius: 25px;
+            }
+
+
+            .level-icon {
+                font-size: 75px;
+            }
+
+
+            .level-card h2 {
+                font-size: 25px;
+            }
+
+
+            .level-card p {
+                min-height: auto;
+                font-size: 16px;
+            }
+
+
+            .level-button {
+                width: 90%;
+                min-width: unset;
+
+                font-size: 16px;
+                padding: 17px 20px;
+            }
+
+
+            .extra-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+            }
+
+
+            .extra-button {
+                width: 90%;
+                min-width: auto;
+
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="rakbuku-page">
+
+
+        <!-- HEADER -->
+
+        <header class="rakbuku-header">
+
+            <img
+                src="assets/images/logo-kit-budi.jpg"
+                alt="Logo KIT BUDI"
+                class="rakbuku-logo"
+            >
+
+
+            <div class="rakbuku-header-buttons">
+
+                <button
+                    class="home-button"
+                    type="button"
+                    onclick="window.location.href='index.html'"
+                >
+                    🏠 HALAMAN UTAMA
+                </button>
+
+
+                <!-- BUTANG MUZIK -->
+
+                <button
+                    id="musicButton"
+                    class="music-button"
+                    type="button"
+                    aria-label="Muzik"
+                >
+                    🔊
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- KANDUNGAN UTAMA -->
+
+        <section class="rakbuku-content">
+
+            <h1>📚 RAK BUKU KIT BUDI</h1>
+
+
+            <p class="subtitle">
+                Pilih tahap pembelajaran anda untuk memulakan pengembaraan!
+            </p>
+
+
+            <!-- PILIHAN TAHAP -->
+
+            <div class="level-container">
+
+
+                <!-- TAHAP RENDAH -->
+
+                <div class="level-card">
+
+                    <div class="level-icon">
+                        🌱
+                    </div>
+
+
+                    <h2>TAHAP RENDAH</h2>
+
+
+                    <p>
+                        Pengembaraan cerita rakyat dengan bahan
+                        pembelajaran yang sesuai untuk tahap rendah.
+                    </p>
+
+
+                    <button
+                        class="level-button rendah-button"
+                        type="button"
+                        onclick="selectLevel('rendah')"
+                    >
+                        PILIH TAHAP RENDAH
+                    </button>
+
+                </div>
+
+
+                <!-- TAHAP SEDERHANA -->
+
+                <div class="level-card">
+
+                    <div class="level-icon">
+                        🌳
+                    </div>
+
+
+                    <h2>TAHAP SEDERHANA</h2>
+
+
+                    <p>
+                        Terokai lima cerita rakyat dan pelbagai
+                        aktiviti permainan interaktif.
+                    </p>
+
+
+                    <button
+                        class="level-button sederhana-button"
+                        type="button"
+                        onclick="selectLevel('sederhana')"
+                    >
+                        PILIH TAHAP SEDERHANA
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CEK SKOR DAN MAKLUM BALAS -->
+
+            <div class="extra-buttons">
+
+                <a
+                    id="scoreLink"
+                    class="extra-button score-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    🏆 CEK SKOR
+                </a>
+
+
+                <a
+                    id="feedbackLink"
+                    class="extra-button feedback-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    💬 MAKLUM BALAS
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================
+         MUZIK LATAR
+    ======================================== -->
+
+    <audio
+        id="backgroundMusic"
+        src="assets/audio/lagu-kit-budi.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <!-- DATA KIT BUDI -->
+
+    <script src="js/data.js"></script>
+
+
+    <script>
+
+        /* ========================================
+           PAUTAN CEK SKOR
+        ======================================== */
+
+        const scoreLink =
+            document.getElementById("scoreLink");
+
+        if (
+            typeof appLinks !== "undefined" &&
+            scoreLink
+        ) {
+
+            scoreLink.href = appLinks.score;
+
+        }
+
+
+        /* ========================================
+           PAUTAN MAKLUM BALAS
+        ======================================== */
+
+        const feedbackLink =
+            document.getElementById("feedbackLink");
+
+        if (
+            typeof appLinks !== "undefined" &&
+            feedbackLink
+        ) {
+
+            feedbackLink.href = appLinks.feedback;
+
+        }
+
+
+        /* ========================================
+           SISTEM PILIH TAHAP
+        ======================================== */
+
+        function selectLevel(level) {
+
+            sessionStorage.setItem(
+                "selectedLevel",
+                level
+            );
+
+            const music =
+                document.getElementById("backgroundMusic");
+
+
+            /* Simpan masa lagu */
+
+            sessionStorage.setItem(
+                "musicTime",
+                music.currentTime
+            );
+
+
+            /* Simpan status muzik */
+
+            sessionStorage.setItem(
+                "musicPlaying",
+                !music.paused
+            );
+
+
+            /* Pergi ke intro */
+
+            window.location.href = "intro.html";
+
+        }
+
+
+        /* ========================================
+           SISTEM MUZIK BERSAMBUNG
+        ======================================== */
+
+        const backgroundMusic =
+            document.getElementById("backgroundMusic");
+
+        const musicButton =
+            document.getElementById("musicButton");
+
+
+        backgroundMusic.loop = true;
+        backgroundMusic.volume = 0.4;
+
+
+        /* Ambil masa lagu dari page sebelum */
+
+        const savedMusicTime =
+            sessionStorage.getItem("musicTime");
+
+        const savedMusicPlaying =
+            sessionStorage.getItem("musicPlaying");
+
+
+        /* Sambung dari masa terakhir */
+
+        if (savedMusicTime !== null) {
+
+            backgroundMusic.currentTime =
+                parseFloat(savedMusicTime);
+
+        }
+
+
+        /* Cuba sambung muzik bila page dibuka */
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                if (savedMusicPlaying !== "false") {
+
+                    backgroundMusic.play()
+
+                        .then(function () {
+
+                            musicButton.innerHTML = "🔊";
+
+                        })
+
+                        .catch(function () {
+
+                            musicButton.innerHTML = "🔇";
+
+                        });
+
+                } else {
+
+                    musicButton.innerHTML = "🔇";
+
+                }
+
+            }
+        );
+
+
+        /* ========================================
+           BUTANG MUZIK
+        ======================================== */
+
+        musicButton.addEventListener(
+            "click",
+            function () {
+
+                if (backgroundMusic.paused) {
+
+                    backgroundMusic.play()
+
+                        .then(function () {
+
+                            musicButton.innerHTML = "🔊";
+
+                            sessionStorage.setItem(
+                                "musicPlaying",
+                                "true"
+                            );
+
+                        });
+
+                } else {
+
+                    backgroundMusic.pause();
+
+                    musicButton.innerHTML = "🔇";
+
+
+                    sessionStorage.setItem(
+                        "musicPlaying",
+                        "false"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* ========================================
+           SIMPAN MASA LAGU
+           SEBELUM TUKAR PAGE
+        ======================================== */
+
+        window.addEventListener(
+            "beforeunload",
+            function () {
+
+                sessionStorage.setItem(
+                    "musicTime",
+                    backgroundMusic.currentTime
+                );
+
+
+                sessionStorage.setItem(
+                    "musicPlaying",
+                    !backgroundMusic.paused
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

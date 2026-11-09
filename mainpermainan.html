@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Main Permainan - Kit Budi</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* =====================================
+           RESET DAN TETAPAN UTAMA
+        ===================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fffdf2;
+            color: #263f78;
+
+            height: 100vh;
+            height: 100dvh;
+
+            display: flex;
+            flex-direction: column;
+
+            overflow: hidden;
+        }
+
+        /* =====================================
+           BAHAGIAN ATAS
+        ===================================== */
+
+        .top-bar {
+            width: 100%;
+            height: 72px;
+            min-height: 72px;
+
+            background: white;
+            padding: 7px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        /* =====================================
+           BUTTON HALAMAN UTAMA
+        ===================================== */
+
+        .home-btn {
+            background: #ed9c2f;
+            color: white;
+
+            border: none;
+            border-radius: 40px;
+
+            padding: 18px 32px;
+            min-height: 68px;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            cursor: pointer;
+            text-decoration: none;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            white-space: nowrap;
+        }
+
+        /* =====================================
+           TAJUK PERMAINAN
+        ===================================== */
+
+        .PERMAINAN-heading {
+            width: 100%;
+            height: 75px;
+            min-height: 75px;
+
+            text-align: center;
+            padding: 9px 12px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .PERMAINAN-heading h1 {
+            margin: 0 0 5px;
+            font-size: 25px;
+            font-weight: 900;
+            color: #263f78;
+        }
+
+        .PERMAINAN-heading p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* =====================================
+           RUANG PERMAINAN
+        ===================================== */
+
+        .PERMAINAN-frame-container {
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+
+            background: white;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+            border: none;
+            background: white;
+        }
+
+        /* =====================================
+           NOTIS
+        ===================================== */
+
+        .notice {
+            width: 100%;
+            min-height: 28px;
+
+            background: #fffdf2;
+            padding: 5px 12px;
+
+            text-align: center;
+
+            font-size: 11px;
+            color: #666;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =====================================
+           BUTTON BAHAGIAN BAWAH
+        ===================================== */
+
+        .bottom-bar {
+            width: 100%;
+            min-height: 90px;
+
+            background: white;
+            padding: 10px 15px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn,
+        .open-btn {
+            border: none;
+            border-radius: 40px;
+
+            padding: 18px 32px;
+            min-height: 68px;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            color: white;
+
+            cursor: pointer;
+            text-decoration: none;
+
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .back-btn {
+            background: #777;
+        }
+
+        .open-btn {
+            background: #4260b0;
+        }
+
+        /* =====================================
+           HOVER BUTTON
+        ===================================== */
+
+        .home-btn,
+        .back-btn,
+        .open-btn {
+            transition: 0.25s ease;
+        }
+
+        .home-btn:hover,
+        .back-btn:hover,
+        .open-btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.08);
+        }
+
+        /* =====================================
+           SKRIN KOMPUTER RENDAH
+        ===================================== */
+
+        @media (max-height: 750px) and (min-width: 769px) {
+
+            .top-bar {
+                height: 65px;
+                min-height: 65px;
+                padding: 5px 20px;
+            }
+
+            .logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .home-btn {
+                min-height: 54px;
+                padding: 13px 24px;
+                font-size: 16px;
+            }
+
+            .PERMAINAN-heading {
+                height: 62px;
+                min-height: 62px;
+                padding: 5px;
+            }
+
+            .PERMAINAN-heading h1 {
+                font-size: 22px;
+            }
+
+            .PERMAINAN-heading p {
+                font-size: 12px;
+            }
+
+            .bottom-bar {
+                min-height: 78px;
+                padding: 7px 12px;
+            }
+
+            .back-btn,
+            .open-btn {
+                min-height: 54px;
+                padding: 13px 25px;
+                font-size: 16px;
+            }
+
+            .notice {
+                min-height: 23px;
+                font-size: 10px;
+            }
+        }
+
+        /* =====================================
+           TABLET DAN TELEFON
+        ===================================== */
+
+        @media (max-width: 768px) {
+
+            .top-bar {
+                height: 65px;
+                min-height: 65px;
+                padding: 5px 12px;
+            }
+
+            .logo {
+                width: 45px;
+                height: 45px;
+            }
+
+            .home-btn {
+                min-height: 48px;
+                padding: 13px 20px;
+                font-size: 16px;
+            }
+
+            .PERMAINAN-heading {
+                height: 65px;
+                min-height: 65px;
+                padding: 5px;
+            }
+
+            .PERMAINAN-heading h1 {
+                font-size: 19px;
+            }
+
+            .PERMAINAN-heading p {
+                font-size: 12px;
+            }
+
+            .bottom-bar {
+                min-height: 85px;
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .back-btn,
+            .open-btn {
+                min-height: 55px;
+                padding: 14px 20px;
+                font-size: 16px;
+            }
+
+            .notice {
+                font-size: 9px;
+                min-height: 24px;
+            }
+        }
+
+        /* =====================================
+           TELEFON KECIL
+        ===================================== */
+
+        @media (max-width: 480px) {
+
+            .top-bar {
+                padding: 5px 10px;
+            }
+
+            .home-btn {
+                min-height: 45px;
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+
+            .bottom-bar {
+                gap: 8px;
+                padding: 10px;
+                flex-wrap: wrap;
+            }
+
+            .back-btn,
+            .open-btn {
+                flex: 1 1 100%;
+                width: 100%;
+                min-width: 0;
+
+                min-height: 50px;
+                padding: 12px 10px;
+
+                font-size: 14px;
+            }
+
+            .PERMAINAN-heading h1 {
+                font-size: 17px;
+            }
+
+            .PERMAINAN-heading p {
+                font-size: 10px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGO DAN BUTTON HALAMAN UTAMA -->
+
+    <div class="top-bar">
+
+        <img
+            src="assets/images/logo-kit-budi.jpg"
+            class="logo"
+            alt="Logo Kit Budi"
+        >
+
+        <button
+            class="home-btn"
+            type="button"
+            onclick="window.location.href='index.html'">
+
+            🏠 HALAMAN UTAMA
+
+        </button>
+
+    </div>
+
+
+    <!-- TAJUK PERMAINAN -->
+
+    <div class="PERMAINAN-heading">
+
+        <h1>
+            🎮 <span id="PERMAINANTitle">MAIN PERMAINAN</span>
+        </h1>
+
+        <p>
+            Selamat bermain dan selamat belajar!
+        </p>
+
+    </div>
+
+
+    <!-- PAPARAN PERMAINAN -->
+
+    <div class="PERMAINAN-frame-container">
+
+        <iframe
+            id="PERMAINANFrame"
+            title="Permainan Kit Budi"
+            allow="microphone; autoplay; fullscreen; gamepad"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+
+    <!-- NOTIS PERMAINAN -->
+
+    <div
+        class="notice"
+        id="frameNotice">
+
+        Jika permainan tidak dipaparkan, tekan butang
+        BUKA PERMAINAN DI HALAMAN INI.
+
+    </div>
+
+
+    <!-- BUTTON BAHAGIAN BAWAH -->
+
+    <div class="bottom-bar">
+
+        <button
+            class="back-btn"
+            type="button"
+            onclick="window.location.href='pilihpermainan.html'">
+
+            ↩ KEMBALI KE PILIHAN PERMAINAN
+
+        </button>
+
+
+        <button
+            class="open-btn"
+            id="openPERMAINANButton"
+            type="button">
+
+            BUKA PERMAINAN DI HALAMAN INI
+
+        </button>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const PERMAINANTitle =
+            sessionStorage.getItem("selectedPERMAINANTitle");
+
+        const PERMAINANUrl =
+            sessionStorage.getItem("selectedPERMAINANUrl");
+
+
+        const titleElement =
+            document.getElementById("PERMAINANTitle");
+
+        const PERMAINANFrame =
+            document.getElementById("PERMAINANFrame");
+
+        const openPERMAINANButton =
+            document.getElementById("openPERMAINANButton");
+
+
+        /* SEMAK URL PERMAINAN */
+
+        if (!PERMAINANUrl) {
+
+            titleElement.textContent =
+                "PERMAINAN TIDAK DIJUMPAI";
+
+            document.getElementById("frameNotice").textContent =
+                "Sila kembali ke pilihan permainan dan pilih permainan.";
+
+            PERMAINANFrame.style.display = "none";
+
+            openPERMAINANButton.style.display = "none";
+
+        } else {
+
+            titleElement.textContent =
+                PERMAINANTitle || "MAIN PERMAINAN";
+
+            PERMAINANFrame.src =
+                PERMAINANUrl;
+
+
+            /* BUKA PERMAINAN DALAM TAB YANG SAMA */
+
+            openPERMAINANButton.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        PERMAINANUrl;
+
+                }
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>

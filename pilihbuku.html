@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+
+<html lang="ms">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pilih Buku Cerita - Kit Budi</title>
+
+    <script src="js/data.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+
+        /* RESET & HALAMAN */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #263f78;
+        }
+
+
+        /* BACKGROUND PILIH BUKU */
+
+        .book-selection-page {
+            position: relative;
+            isolation: isolate;
+
+            width: 100%;
+            min-height: 100vh;
+
+            padding: 20px 4vw 35px;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 250, 240, 0.12),
+                    rgba(255, 250, 240, 0.12)
+                ),
+                url("assets/images/background-pilihbuku.png");
+
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+
+        /* HEADER */
+
+        .top-bar {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            margin-bottom: 10px;
+        }
+
+
+        .logo {
+            width: 110px;
+            height: auto;
+
+            display: block;
+        }
+
+
+        .top-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        button,
+        a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+
+        /* SAIZ BUTANG SERAGAM */
+
+        .home-btn,
+        .music-btn {
+
+            position: static;
+
+            border: none;
+            border-radius: 30px;
+
+            padding: 18px 32px;
+            min-height: 68px;
+
+            color: white;
+
+            font-weight: bold;
+            font-size: 18px;
+
+            white-space: nowrap;
+
+            transition: transform 0.2s ease;
+        }
+
+
+        .home-btn {
+            background: #ed9c2f;
+        }
+
+
+        .music-btn {
+            background: #4260b0;
+        }
+
+
+        .home-btn:hover,
+        .music-btn:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* KANDUNGAN UTAMA */
+
+        .book-main-content {
+
+            position: relative;
+            z-index: 1;
+
+            width: 100%;
+            max-width: 1800px;
+
+            min-height: calc(100vh - 130px);
+
+            margin: 0 auto;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        /* TAJUK */
+
+        .heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        .heading h1 {
+
+            margin: 0 0 12px;
+
+            font-size: clamp(32px, 2.5vw, 48px);
+
+            color: #263b70;
+
+            text-shadow:
+                0 2px 5px rgba(255, 255, 255, 0.9);
+        }
+
+
+        .heading p {
+
+            margin: 0;
+
+            color: #555;
+
+            font-size: clamp(16px, 1.2vw, 20px);
+
+            text-shadow:
+                0 1px 4px rgba(255, 255, 255, 0.9);
+        }
+
+
+        /* SENARAI BUKU */
+
+        .book-container {
+
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(450px, 1fr));
+
+            justify-content: center;
+            align-items: stretch;
+
+            gap: 50px;
+
+            margin: 0 auto;
+
+            padding: 0 3vw;
+        }
+
+
+        /* SUSUNAN KHAS TAHAP SEDERHANA */
+
+        .book-container.medium-book-layout {
+
+            grid-template-columns:
+                repeat(6, minmax(0, 1fr));
+
+            gap: 35px;
+
+            padding: 0 3vw;
+        }
+
+
+        .book-container.medium-book-layout .book-card {
+            grid-column: span 2;
+        }
+
+
+        .book-container.medium-book-layout .book-card:nth-child(4) {
+            grid-column: 2 / span 2;
+        }
+
+
+        .book-container.medium-book-layout .book-card:nth-child(5) {
+            grid-column: 4 / span 2;
+        }
+
+
+        /* KAD BUKU */
+
+        .book-card {
+
+            width: 100%;
+            min-height: 600px;
+
+            padding: 28px;
+
+            background:
+                rgba(255, 255, 255, 0.94);
+
+            border-radius: 28px;
+
+            border:
+                2px solid rgba(255, 255, 255, 0.85);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.12);
+
+            text-align: center;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .book-card:hover {
+
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 14px 32px rgba(0, 0, 0, 0.18);
+        }
+
+
+        /* GAMBAR MUKA DEPAN BUKU */
+
+        .book-cover {
+
+            width: 100%;
+            height: 410px;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            background: #eeeeee;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .book-cover img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+
+        /* MAKLUMAT BUKU */
+
+        .book-card h3 {
+
+            min-height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #263b70;
+
+            font-size: 25px;
+
+            line-height: 1.3;
+
+            margin: 25px 0 10px;
+        }
+
+
+        .book-number {
+
+            color: #777;
+
+            font-size: 17px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* BUTANG PILIH BUKU */
+
+        .select-btn {
+
+            margin-top: auto;
+
+            border: none;
+            border-radius: 30px;
+
+            background: #4260b0;
+            color: white;
+
+            padding: 18px 32px;
+            min-height: 68px;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .select-btn:hover {
+
+            background: #263f78;
+
+            transform: scale(1.05);
+        }
+
+
+        /* BUTANG KEMBALI */
+
+        .back-container {
+
+            text-align: center;
+
+            margin-top: 35px;
+        }
+
+
+        .back-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #777;
+            color: white;
+
+            padding: 18px 32px;
+
+            min-height: 68px;
+
+            border-radius: 30px;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            transition:
+                transform 0.2s ease;
+        }
+
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* RALAT GAMBAR */
+
+        .image-error {
+
+            width: 100%;
+            height: 410px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            color: #d93025;
+
+            font-size: 15px;
+
+            background: #eeeeee;
+
+            border-radius: 20px;
+
+            padding: 15px;
+        }
+
+
+        /* SKRIN SEDERHANA */
+
+        @media (max-width: 1100px) {
+
+            .book-selection-page {
+                padding: 20px 30px 35px;
+            }
+
+
+            .book-container {
+
+                grid-template-columns:
+                    repeat(2, minmax(300px, 1fr));
+
+                gap: 30px;
+
+                padding: 0;
+            }
+
+
+            .book-container.medium-book-layout {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 30px;
+
+                padding: 0;
+            }
+
+
+            .book-container.medium-book-layout .book-card {
+                grid-column: auto;
+            }
+
+
+            .book-card {
+
+                min-height: 520px;
+
+                padding: 22px;
+            }
+
+
+            .book-cover,
+            .image-error {
+                height: 330px;
+            }
+
+
+            .book-card h3 {
+                font-size: 21px;
+            }
+
+        }
+
+
+        /* TABLET */
+
+        @media (max-width: 800px) {
+
+            .book-main-content {
+                justify-content: flex-start;
+            }
+
+
+            .heading {
+                margin-top: 30px;
+            }
+
+
+            .book-container {
+
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+
+                padding: 0;
+            }
+
+
+            .book-container.medium-book-layout {
+
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+            }
+
+
+            .book-container.medium-book-layout .book-card {
+                grid-column: auto;
+            }
+
+
+            .book-card {
+                width: 100%;
+            }
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .book-selection-page {
+
+                padding: 15px;
+
+                background-attachment: scroll;
+
+                background-position: center center;
+            }
+
+
+            .top-bar {
+
+                flex-direction: column;
+
+                align-items: center;
+
+                gap: 15px;
+            }
+
+
+            .logo {
+                width: 80px;
+            }
+
+
+            .top-buttons {
+
+                justify-content: center;
+
+                flex-wrap: wrap;
+            }
+
+
+            .home-btn,
+            .music-btn {
+
+                padding: 15px 18px;
+
+                min-height: 52px;
+
+                font-size: 15px;
+            }
+
+
+            .heading {
+                margin: 25px 0 30px;
+            }
+
+
+            .heading h1 {
+                font-size: 27px;
+            }
+
+
+            .heading p {
+                font-size: 15px;
+            }
+
+
+            .book-container {
+
+                gap: 25px;
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .book-container.medium-book-layout {
+
+                gap: 25px;
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .book-container.medium-book-layout .book-card {
+                grid-column: auto;
+            }
+
+
+            .book-card {
+
+                min-height: auto;
+
+                padding: 18px;
+            }
+
+
+            .book-cover,
+            .image-error {
+                height: 280px;
+            }
+
+
+            .book-card h3 {
+
+                font-size: 19px;
+
+                min-height: auto;
+            }
+
+
+            .select-btn,
+            .back-btn {
+
+                padding: 15px 18px;
+
+                min-height: 52px;
+
+                font-size: 15px;
+            }
+
+
+            .select-btn {
+                margin-top: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="book-selection-page">
+
+
+    <!-- HEADER -->
+
+    <div class="top-bar">
+
+
+        <img
+            src="assets/images/logo-kit-budi.jpg"
+            class="logo"
+            alt="Logo Kit Budi"
+        >
+
+
+        <div class="top-buttons">
+
+
+            <!-- BUTANG MUZIK -->
+
+            <button
+                class="music-btn"
+                id="musicButton"
+                type="button"
+                aria-label="Muzik"
+            >
+                🔊
+            </button>
+
+
+            <!-- HALAMAN UTAMA -->
+
+            <button
+                class="home-btn"
+                type="button"
+                onclick="window.location.href='index.html'"
+            >
+                🏠 HALAMAN UTAMA
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- KANDUNGAN UTAMA -->
+
+    <main class="book-main-content">
+
+
+        <!-- TAJUK -->
+
+        <div class="heading">
+
+            <h1>📚 PILIH BUKU CERITA</h1>
+
+            <p id="levelDescription">
+                Pilih sebuah buku cerita.
+            </p>
+
+        </div>
+
+
+        <!-- SENARAI BUKU -->
+
+        <div
+            class="book-container"
+            id="bookContainer"
+        >
+        </div>
+
+
+        <!-- BUTANG KEMBALI -->
+
+        <div class="back-container">
+
+            <a
+                href="rakbuku.html"
+                class="back-btn"
+            >
+                ↩ KEMBALI KE RAK BUKU
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================
+         MUZIK LATAR BELAKANG
+    ========================== -->
+
+    <audio
+        id="backgroundMusic"
+        src="assets/audio/lagu-kit-budi.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        /* =========================
+           PILIH TAHAP
+        ========================== */
+
+        const selectedLevel =
+            sessionStorage.getItem("selectedLevel");
+
+
+        const bookContainer =
+            document.getElementById("bookContainer");
+
+
+        const levelDescription =
+            document.getElementById("levelDescription");
+
+
+        /* =========================
+           SISTEM MUZIK BERTERUSAN
+        ========================== */
+
+        const music =
+            document.getElementById("backgroundMusic");
+
+
+        const musicButton =
+            document.getElementById("musicButton");
+
+
+        // Tetapkan muzik loop
+
+        music.loop = true;
+
+
+        // Volume muzik
+
+        music.volume = 0.4;
+
+
+        // Ambil status muzik
+
+        const musicStatus =
+            sessionStorage.getItem("kitBudiMusicStatus");
+
+
+        // Ambil masa terakhir lagu
+
+        const savedMusicTime =
+            sessionStorage.getItem("kitBudiMusicTime");
+
+
+        // Default muzik ON jika belum ada status
+
+        let musicIsOn =
+            musicStatus !== "off";
+
+
+        // =========================
+        // TETAPKAN MASA TERAKHIR
+        // =========================
+
+        if (
+            savedMusicTime !== null &&
+            !isNaN(savedMusicTime)
+        ) {
+
+            music.currentTime =
+                parseFloat(savedMusicTime);
+
+        }
+
+
+        // =========================
+        // FUNGSI UPDATE IKON
+        // =========================
+
+        function updateMusicButton() {
+
+            if (music.paused) {
+
+                musicButton.textContent = "🔇";
+
+            } else {
+
+                musicButton.textContent = "🔊";
+
+            }
+
+        }
+
+
+        // =========================
+        // SIMPAN MASA MUZIK
+        // =========================
+
+        function saveMusicState() {
+
+            sessionStorage.setItem(
+                "kitBudiMusicTime",
+                music.currentTime
+            );
+
+
+            sessionStorage.setItem(
+                "kitBudiMusicStatus",
+                music.paused ? "off" : "on"
+            );
+
+        }
+
+
+        // =========================
+        // CUBA MAIN MUZIK
+        // =========================
+
+        async function playMusic() {
+
+            try {
+
+                // Ambil semula masa terakhir
+
+                const lastTime =
+                    sessionStorage.getItem("kitBudiMusicTime");
+
+
+                if (
+                    lastTime !== null &&
+                    !isNaN(lastTime)
+                ) {
+
+                    music.currentTime =
+                        parseFloat(lastTime);
+
+                }
+
+
+                await music.play();
+
+
+                musicIsOn = true;
+
+
+                sessionStorage.setItem(
+                    "kitBudiMusicStatus",
+                    "on"
+                );
+
+
+                updateMusicButton();
+
+
+            } catch (error) {
+
+                console.log(
+                    "Autoplay disekat oleh browser:",
+                    error
+                );
+
+
+                updateMusicButton();
+
+            }
+
+        }
+
+
+        // =========================
+        // AUTOPLAY BILA PAGE DIBUKA
+        // =========================
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                if (musicIsOn) {
+
+                    playMusic();
+
+                } else {
+
+                    music.pause();
+
+                    musicButton.textContent = "🔇";
+
+                }
+
+            }
+        );
+
+
+        // =========================
+        // SIMPAN MASA SEMASA LAGU
+        // =========================
+
+        setInterval(
+            function () {
+
+                if (!music.paused) {
+
+                    sessionStorage.setItem(
+                        "kitBudiMusicTime",
+                        music.currentTime
+                    );
+
+                }
+
+            },
+            500
+        );
+
+
+        // =========================
+        // SIMPAN SEBELUM TUKAR PAGE
+        // =========================
+
+        window.addEventListener(
+            "pagehide",
+            function () {
+
+                saveMusicState();
+
+            }
+        );
+
+
+        // =========================
+        // JIKA PAGE HILANG
+        // =========================
+
+        document.addEventListener(
+            "visibilitychange",
+            function () {
+
+                if (
+                    document.visibilityState === "hidden"
+                ) {
+
+                    saveMusicState();
+
+                }
+
+            }
+        );
+
+
+        // =========================
+        // BUTANG MUZIK ON / OFF
+        // =========================
+
+        musicButton.addEventListener(
+            "click",
+            async function () {
+
+                if (music.paused) {
+
+                    try {
+
+                        const lastTime =
+                            sessionStorage.getItem(
+                                "kitBudiMusicTime"
+                            );
+
+
+                        if (
+                            lastTime !== null &&
+                            !isNaN(lastTime)
+                        ) {
+
+                            music.currentTime =
+                                parseFloat(lastTime);
+
+                        }
+
+
+                        await music.play();
+
+
+                        musicIsOn = true;
+
+
+                        sessionStorage.setItem(
+                            "kitBudiMusicStatus",
+                            "on"
+                        );
+
+
+                        updateMusicButton();
+
+
+                    } catch (error) {
+
+                        console.log(
+                            "Muzik tidak dapat dimainkan:",
+                            error
+                        );
+
+                    }
+
+                } else {
+
+                    saveMusicState();
+
+
+                    music.pause();
+
+
+                    musicIsOn = false;
+
+
+                    sessionStorage.setItem(
+                        "kitBudiMusicStatus",
+                        "off"
+                    );
+
+
+                    updateMusicButton();
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           PAPARKAN BUKU
+        ========================== */
+
+        if (
+            !selectedLevel ||
+            !learningData[selectedLevel]
+        ) {
+
+            bookContainer.innerHTML =
+                "<p>Sila pilih tahap pembelajaran dahulu.</p>";
+
+        } else {
+
+
+            const books =
+                learningData[selectedLevel];
+
+
+            /* =========================
+               TAHAP RENDAH / SEDERHANA
+            ========================== */
+
+            if (
+                selectedLevel === "rendah"
+            ) {
+
+                levelDescription.textContent =
+                    "TAHAP RENDAH - Pilih satu daripada 2 buku cerita.";
+
+            } else {
+
+                levelDescription.textContent =
+                    "TAHAP SEDERHANA - Pilih satu daripada 5 buku cerita.";
+
+
+                // Aktifkan susunan khas
+                // untuk Tahap Sederhana
+
+                bookContainer.classList.add(
+                    "medium-book-layout"
+                );
+
+            }
+
+
+            /* =========================
+               PAPARKAN SETIAP BUKU
+            ========================== */
+
+            books.forEach(
+                function (book, index) {
+
+
+                    /* KAD BUKU */
+
+                    const card =
+                        document.createElement("div");
+
+
+                    card.className =
+                        "book-card";
+
+
+                    /* GAMBAR MUKA DEPAN */
+
+                    const cover =
+                        document.createElement("div");
+
+
+                    cover.className =
+                        "book-cover";
+
+
+                    const coverImage =
+                        document.createElement("img");
+
+
+                    coverImage.src =
+                        book.image;
+
+
+                    coverImage.alt =
+                        "Muka depan " + book.title;
+
+
+                    /* JIKA GAMBAR TAK JUMPA */
+
+                    coverImage.onerror =
+                        function () {
+
+                            cover.innerHTML =
+
+                                '<div class="image-error">' +
+
+                                'Gambar tidak dijumpai: ' +
+
+                                book.image +
+
+                                '</div>';
+
+
+                            console.error(
+                                "Gambar tidak dijumpai:",
+                                book.image
+                            );
+
+                        };
+
+
+                    cover.appendChild(
+                        coverImage
+                    );
+
+
+                    /* TAJUK BUKU */
+
+                    const title =
+                        document.createElement("h3");
+
+
+                    title.textContent =
+                        book.title;
+
+
+                    /* NOMBOR BUKU */
+
+                    const number =
+                        document.createElement("div");
+
+
+                    number.className =
+                        "book-number";
+
+
+                    number.textContent =
+                        "Buku " + (index + 1);
+
+
+                    /* BUTANG PILIH BUKU */
+
+                    const button =
+                        document.createElement("button");
+
+
+                    button.className =
+                        "select-btn";
+
+
+                    button.textContent =
+                        "PILIH BUKU";
+
+
+                    /* =========================
+                       BILA PILIH BUKU
+                    ========================== */
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+
+                            if (!book.book) {
+
+                                alert(
+                                    "Pautan buku tidak dijumpai dalam data.js."
+                                );
+
+                                return;
+
+                            }
+
+
+                            // Simpan masa muzik
+                            // sebelum tukar halaman
+
+                            saveMusicState();
+
+
+                            /* SIMPAN DATA BUKU */
+
+                            sessionStorage.setItem(
+                                "selectedBookId",
+                                book.id
+                            );
+
+
+                            sessionStorage.setItem(
+                                "selectedBookUrl",
+                                book.book
+                            );
+
+
+                            sessionStorage.setItem(
+                                "selectedBookTitle",
+                                book.title
+                            );
+
+
+                            /* PERGI KE HALAMAN BACA */
+
+                            window.location.href =
+                                "baca.html";
+
+                        }
+                    );
+
+
+                    /* =========================
+                       MASUKKAN DALAM KAD
+                    ========================== */
+
+                    card.appendChild(
+                        cover
+                    );
+
+
+                    card.appendChild(
+                        title
+                    );
+
+
+                    card.appendChild(
+                        number
+                    );
+
+
+                    card.appendChild(
+                        button
+                    );
+
+
+                    /* MASUKKAN KAD */
+
+                    bookContainer.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

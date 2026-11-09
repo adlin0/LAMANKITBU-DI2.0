@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Pilih Permainan - Kit Budi</title>
+
+
+    <!-- DATA -->
+
+    <script src="js/data.js"></script>
+
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body.activity-selection-page {
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* ========================================
+           BACKGROUND TAHAP RENDAH
+        ======================================== */
+
+        body.low-level-games-page {
+            position: relative;
+
+            min-height: 100vh;
+            height: auto;
+
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            background: #dcecff;
+        }
+
+
+        body.low-level-games-page::before {
+            content: "";
+
+            position: fixed;
+            inset: -8px;
+
+            z-index: 0;
+
+            pointer-events: none;
+
+            background-image:
+                url("assets/images/background-pilihpermainanrendah.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            filter: blur(2px);
+
+            transform: scale(1.02);
+        }
+
+
+        body.low-level-games-page::after {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            z-index: 0;
+
+            pointer-events: none;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+        }
+
+
+        /* ========================================
+           BACKGROUND TAHAP SEDERHANA
+        ======================================== */
+
+        body.medium-level-games-page {
+            position: relative;
+
+            min-height: 100vh;
+            height: auto;
+
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            background: #dcecff;
+        }
+
+
+        body.medium-level-games-page::before {
+            content: "";
+
+            position: fixed;
+            inset: -8px;
+
+            z-index: 0;
+
+            pointer-events: none;
+
+            background-image:
+                url("assets/images/background-pilihpermainansederhana.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            filter: blur(2px);
+
+            transform: scale(1.02);
+        }
+
+
+        body.medium-level-games-page::after {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            z-index: 0;
+
+            pointer-events: none;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+        }
+
+
+        /* ========================================
+           LOGO KIT BUDI
+        ======================================== */
+
+        body.activity-selection-page .activity-logo {
+            position: absolute !important;
+
+            top: 15px !important;
+            left: 25px !important;
+
+            width: 75px !important;
+            height: auto !important;
+
+            z-index: 20 !important;
+
+            display: block;
+        }
+
+
+        /* ========================================
+           BUTANG MUZIK DAN HALAMAN UTAMA
+        ======================================== */
+
+        body.activity-selection-page .activity-top-buttons {
+            position: absolute !important;
+
+            top: 20px !important;
+            right: 25px !important;
+
+            left: auto !important;
+
+            display: flex !important;
+
+            flex-direction: row !important;
+
+            justify-content: flex-end !important;
+
+            align-items: center !important;
+
+            flex-wrap: wrap;
+
+            gap: 12px !important;
+
+            width: auto !important;
+
+            margin: 0 !important;
+            padding: 0 !important;
+
+            z-index: 30 !important;
+        }
+
+
+        /* SAIZ STANDARD DESKTOP */
+
+        body.activity-selection-page
+        .activity-top-buttons button {
+
+            position: static !important;
+
+            width: auto !important;
+
+            min-width: 0 !important;
+
+            padding: 18px 32px !important;
+
+            min-height: 68px !important;
+
+            border: none !important;
+
+            border-radius: 30px !important;
+
+            color: white !important;
+
+            font-size: 18px !important;
+
+            font-weight: bold !important;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.15);
+
+            transition:
+                transform 0.2s ease;
+        }
+
+
+        /* ========================================
+           BUTANG MUZIK - SIMBOL SAHAJA
+        ======================================== */
+
+        body.activity-selection-page .music-btn {
+
+            width: 68px !important;
+            height: 68px !important;
+
+            min-height: 68px !important;
+
+            padding: 0 !important;
+
+            border-radius: 50% !important;
+
+            background: #405caa !important;
+
+            display: inline-flex !important;
+
+            justify-content: center !important;
+            align-items: center !important;
+
+            font-size: 28px !important;
+        }
+
+
+        body.activity-selection-page .home-btn {
+            background: #e49b35 !important;
+        }
+
+
+        body.activity-selection-page
+        .activity-top-buttons button:hover {
+
+            transform: translateY(-2px);
+
+            filter: brightness(1.08);
+        }
+
+
+        /* ========================================
+           KANDUNGAN UTAMA
+        ======================================== */
+
+        body.low-level-games-page .activity-content,
+        body.medium-level-games-page .activity-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 100% !important;
+
+            max-width: 1650px !important;
+
+            min-height: 100vh !important;
+
+            height: auto !important;
+
+            margin: 0 auto !important;
+
+            padding:
+                125px 35px 30px !important;
+
+            display: flex !important;
+
+            flex-direction: column !important;
+
+            justify-content: flex-start !important;
+
+            align-items: center !important;
+
+            gap: 20px !important;
+        }
+
+
+        /* ========================================
+           TAJUK PILIH PERMAINAN
+        ======================================== */
+
+        body.low-level-games-page .activity-heading,
+        body.medium-level-games-page .activity-heading {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 100% !important;
+
+            text-align: center;
+
+            margin: 0 !important;
+
+            padding: 0 !important;
+
+            flex: 0 0 auto !important;
+        }
+
+
+        body.low-level-games-page .activity-heading h1,
+        body.medium-level-games-page .activity-heading h1 {
+
+            color: #263b70;
+
+            font-size:
+                clamp(32px, 3vw, 44px) !important;
+
+            margin:
+                0 0 8px !important;
+
+            font-weight: 800;
+
+            text-shadow:
+                0 2px 5px
+                rgba(255, 255, 255, 0.85);
+        }
+
+
+        body.low-level-games-page .activity-heading p,
+        body.medium-level-games-page .activity-heading p {
+
+            color: #263b70;
+
+            font-size: 18px !important;
+
+            margin: 0 !important;
+
+            text-shadow:
+                0 1px 4px
+                rgba(255, 255, 255, 0.9);
+        }
+
+
+        /* ========================================
+           CONTAINER KAD PERMAINAN
+        ======================================== */
+
+        body.low-level-games-page .PERMAINAN-container,
+        body.medium-level-games-page .PERMAINAN-container {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 100% !important;
+
+            max-width: 1450px !important;
+
+            display: flex !important;
+
+            flex-direction: row !important;
+
+            justify-content: center !important;
+
+            align-items: stretch !important;
+
+            flex-wrap: nowrap !important;
+
+            gap: 25px !important;
+
+            margin: 0 auto !important;
+
+            padding: 5px 0 !important;
+
+            flex: 0 0 auto !important;
+
+            min-height: 0;
+        }
+
+
+        /* ========================================
+           KAD PERMAINAN
+        ======================================== */
+
+        body.low-level-games-page .PERMAINAN-card,
+        body.medium-level-games-page .PERMAINAN-card {
+
+            position: relative;
+
+            flex: 1 1 0 !important;
+
+            width: auto !important;
+
+            max-width: none !important;
+
+            min-width: 0 !important;
+
+            height: 390px !important;
+
+            min-height: 390px !important;
+
+            padding:
+                18px 20px 20px !important;
+
+            background:
+                rgba(255, 255, 255, 0.94) !important;
+
+            border:
+                2px solid
+                rgba(255, 255, 255, 0.9);
+
+            border-radius: 23px !important;
+
+            box-shadow:
+                0 8px 25px
+                rgba(50, 60, 90, 0.17);
+
+            display: flex !important;
+
+            flex-direction: column !important;
+
+            justify-content: flex-start !important;
+
+            align-items: center !important;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        body.low-level-games-page .PERMAINAN-card:hover,
+        body.medium-level-games-page .PERMAINAN-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(50, 60, 90, 0.25);
+        }
+
+
+        body.low-level-games-page .PERMAINAN-card-content,
+        body.medium-level-games-page .PERMAINAN-card-content {
+
+            width: 100%;
+
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: flex-start;
+
+            align-items: center;
+        }
+
+
+        /* ========================================
+           GAMBAR PERMAINAN
+        ======================================== */
+
+        body.low-level-games-page .PERMAINAN-image,
+        body.medium-level-games-page .PERMAINAN-image {
+
+            width: 100% !important;
+
+            height: 230px !important;
+
+            object-fit: cover !important;
+
+            border-radius: 15px !important;
+
+            display: block;
+        }
+
+
+        /* ========================================
+           ICON PERMAINAN
+        ======================================== */
+
+        body.low-level-games-page .PERMAINAN-icon,
+        body.medium-level-games-page .PERMAINAN-icon {
+
+            width: 100%;
+
+            height: 230px;
+
+            border-radius: 15px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 80px;
+
+            background:
+                rgba(230, 235, 255, 0.8);
+        }
+
+
+        /* ========================================
+           TAJUK PERMAINAN
+        ======================================== */
+
+        body.low-level-games-page .PERMAINAN-card h2,
+        body.medium-level-games-page .PERMAINAN-card h2 {
+
+            margin: 15px 0 0;
+
+            color: #263b70;
+
+            text-align: center;
+
+            font-size:
+                clamp(19px, 1.5vw, 25px);
+
+            font-weight: 800;
+
+            line-height: 1.2;
+        }
+
+
+        /* ========================================
+           BUTANG MAIN
+        ======================================== */
+
+        body.low-level-games-page .PERMAINAN-btn,
+        body.medium-level-games-page .PERMAINAN-btn {
+
+            width: 100% !important;
+
+            margin-top: 15px;
+
+            padding:
+                16px 12px !important;
+
+            border: none;
+
+            border-radius: 18px;
+
+            background: #405caa;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                filter 0.2s ease;
+        }
+
+
+        body.low-level-games-page .PERMAINAN-btn:hover,
+        body.medium-level-games-page .PERMAINAN-btn:hover {
+
+            transform:
+                scale(1.02);
+
+            filter:
+                brightness(1.08);
+        }
+
+
+        /* ========================================
+           BUTANG KEMBALI
+        ======================================== */
+
+        .back-container {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 5px;
+        }
+
+
+        .back-btn {
+
+            display: inline-block;
+
+            padding:
+                15px 25px;
+
+            border-radius: 30px;
+
+            background: #e49b35;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            text-decoration: none;
+
+            box-shadow:
+                0 4px 10px
+                rgba(0, 0, 0, 0.15);
+
+            transition:
+                transform 0.2s ease,
+                filter 0.2s ease;
+        }
+
+
+        .back-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            filter:
+                brightness(1.08);
+        }
+
+
+        /* ========================================
+           MESSAGE
+        ======================================== */
+
+        .message {
+
+            position: relative;
+
+            z-index: 2;
+
+            padding: 20px;
+
+            background: white;
+
+            border-radius: 15px;
+
+            color: #263b70;
+
+            font-weight: bold;
+
+            text-align: center;
+        }
+
+
+        /* ========================================
+           TABLET
+        ======================================== */
+
+        @media (max-width: 1000px) {
+
+            body.low-level-games-page .PERMAINAN-container,
+            body.medium-level-games-page .PERMAINAN-container {
+
+                flex-wrap: wrap !important;
+            }
+
+
+            body.low-level-games-page .PERMAINAN-card,
+            body.medium-level-games-page .PERMAINAN-card {
+
+                flex:
+                    1 1 calc(50% - 20px) !important;
+
+                max-width:
+                    calc(50% - 20px) !important;
+            }
+
+        }
+
+
+        /* ========================================
+           TELEFON
+        ======================================== */
+
+        @media (max-width: 768px) {
+
+            body.activity-selection-page .activity-logo {
+
+                top: 12px !important;
+                left: 15px !important;
+
+                width: 60px !important;
+            }
+
+
+            body.activity-selection-page .activity-top-buttons {
+
+                top: 12px !important;
+                right: 15px !important;
+
+                gap: 8px !important;
+            }
+
+
+            body.activity-selection-page
+            .activity-top-buttons button {
+
+                min-height: 55px !important;
+
+                padding:
+                    12px 18px !important;
+
+                font-size: 14px !important;
+            }
+
+
+            body.activity-selection-page .music-btn {
+
+                width: 55px !important;
+                height: 55px !important;
+
+                min-height: 55px !important;
+
+                padding: 0 !important;
+
+                font-size: 22px !important;
+            }
+
+
+            body.low-level-games-page .activity-content,
+            body.medium-level-games-page .activity-content {
+
+                padding:
+                    100px 18px 25px !important;
+            }
+
+
+            body.low-level-games-page .PERMAINAN-container,
+            body.medium-level-games-page .PERMAINAN-container {
+
+                flex-direction: column !important;
+
+                flex-wrap: nowrap !important;
+            }
+
+
+            body.low-level-games-page .PERMAINAN-card,
+            body.medium-level-games-page .PERMAINAN-card {
+
+                width: 100% !important;
+
+                max-width: 500px !important;
+
+                flex: none !important;
+
+                height: auto !important;
+
+                min-height: 350px !important;
+            }
+
+
+            body.low-level-games-page .PERMAINAN-image,
+            body.medium-level-games-page .PERMAINAN-image {
+
+                height: 200px !important;
+            }
+
+
+            body.low-level-games-page .PERMAINAN-icon,
+            body.medium-level-games-page .PERMAINAN-icon {
+
+                height: 200px;
+            }
+
+        }
+
+
+        /* ========================================
+           TELEFON KECIL
+        ======================================== */
+
+        @media (max-width: 450px) {
+
+            body.activity-selection-page .activity-top-buttons {
+
+                right: 10px !important;
+            }
+
+
+            body.activity-selection-page .home-btn {
+
+                padding:
+                    12px 14px !important;
+
+                font-size: 12px !important;
+            }
+
+
+            body.low-level-games-page .activity-heading h1,
+            body.medium-level-games-page .activity-heading h1 {
+
+                font-size: 28px !important;
+            }
+
+
+            body.low-level-games-page .PERMAINAN-image,
+            body.medium-level-games-page .PERMAINAN-image {
+
+                height: 165px !important;
+            }
+
+
+            body.low-level-games-page .PERMAINAN-icon,
+            body.medium-level-games-page .PERMAINAN-icon {
+
+                height: 165px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="activity-selection-page">
+
+
+    <!-- LOGO -->
+
+    <img
+        src="assets/images/logo-kit-budi.jpg"
+        class="activity-logo"
+        alt="Logo Kit Budi"
+    >
+
+
+    <!-- BUTANG ATAS -->
+
+    <div class="activity-top-buttons">
+
+
+        <!-- BUTANG MUZIK -->
+
+        <button
+            class="music-btn"
+            id="musicButton"
+            type="button"
+            aria-label="Muzik"
+        >
+            🔊
+        </button>
+
+
+        <!-- HALAMAN UTAMA -->
+
+        <button
+            class="home-btn"
+            type="button"
+            onclick="window.location.href='index.html'"
+        >
+            🏠 HALAMAN UTAMA
+        </button>
+
+
+    </div>
+
+
+    <!-- KANDUNGAN UTAMA -->
+
+    <main class="activity-content">
+
+
+        <!-- TAJUK -->
+
+        <div class="activity-heading">
+
+            <h1>🎮 PILIH PERMAINAN</h1>
+
+            <p id="bookDescription">
+                Pilih satu permainan untuk dimainkan.
+            </p>
+
+        </div>
+
+
+        <!-- SENARAI PERMAINAN -->
+
+        <div
+            class="PERMAINAN-container"
+            id="PERMAINANContainer"
+        ></div>
+
+
+        <!-- BUTANG KEMBALI -->
+
+        <div class="back-container">
+
+
+            <a
+                href="pilihbuku.html"
+                class="back-btn"
+            >
+                ↩ PILIH BUKU
+            </a>
+
+
+            <a
+                href="rakbuku.html"
+                class="back-btn"
+            >
+                📚 RAK BUKU
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- AUDIO MUZIK LATAR -->
+
+    <audio
+        id="backgroundMusic"
+        src="assets/audio/lagu-kit-budi.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+
+    <script>
+
+
+        /* ========================================
+           DATA PILIHAN
+        ======================================== */
+
+        const selectedLevel =
+            sessionStorage.getItem("selectedLevel");
+
+
+        const selectedBookId =
+            sessionStorage.getItem("selectedBookId");
+
+
+        const PERMAINANContainer =
+            document.getElementById("PERMAINANContainer");
+
+
+        const bookDescription =
+            document.getElementById("bookDescription");
+
+
+        /* ========================================
+           PILIH BACKGROUND MENGIKUT TAHAP
+        ======================================== */
+
+        if (selectedLevel === "rendah") {
+
+            document.body.classList.add(
+                "low-level-games-page"
+            );
+
+        } else if (selectedLevel === "sederhana") {
+
+            document.body.classList.add(
+                "medium-level-games-page"
+            );
+
+        }
+
+
+        /* ========================================
+           PILIH GAMBAR MENGIKUT BUKU
+        ======================================== */
+
+        function getGameImage(
+            gameTitle,
+            bookTitle,
+            index
+        ) {
+
+            const title =
+                gameTitle.toLowerCase().trim();
+
+
+            const book =
+                bookTitle.toLowerCase().trim();
+
+
+            /* ARNAB DAN KURA-KURA */
+
+            if (
+                book.includes("arnab") &&
+                book.includes("kura")
+            ) {
+
+                const arnabImages = [
+
+                    "assets/images/susunaksara.jpeg",
+
+                    "assets/images/misikurakura.jpeg",
+
+                    "assets/images/sebutanmagis.jpeg"
+
+                ];
+
+
+                return arnabImages[index] || null;
+
+            }
+
+
+            /* KAD HURUF MISTERI */
+
+            if (
+                title.includes("kad huruf misteri")
+            ) {
+
+                return "assets/images/kadhurufmisteri.jpeg";
+
+            }
+
+
+            /* KEMBARA BATU BELAH */
+
+            if (
+                title.includes("kembara batu belah") ||
+                title.includes("batu belah")
+            ) {
+
+                return "assets/images/kembarabatubelah.jpeg";
+
+            }
+
+
+            /* MARI MENGEJA */
+
+            if (
+                title.includes("mari mengeja") ||
+                title.includes("mengeja suku kata")
+            ) {
+
+                return "assets/images/marimengejasukukata.jpeg";
+
+            }
+
+
+            return null;
+
+        }
+
+
+        /* ========================================
+           PAPARKAN PERMAINAN
+        ======================================== */
+
+        if (
+            !selectedLevel ||
+            !learningData[selectedLevel]
+        ) {
+
+            PERMAINANContainer.innerHTML =
+                '<p class="message">' +
+                'Sila pilih tahap pembelajaran dahulu.' +
+                '</p>';
+
+        } else {
+
+            const books =
+                learningData[selectedLevel];
+
+
+            const selectedBook =
+                books.find(function (book) {
+
+                    return book.id === selectedBookId;
+
+                });
+
+
+            if (!selectedBook) {
+
+                PERMAINANContainer.innerHTML =
+                    '<p class="message">' +
+                    'Buku tidak dijumpai. ' +
+                    'Sila pilih buku semula.' +
+                    '</p>';
+
+            } else {
+
+                bookDescription.textContent =
+                    selectedBook.title +
+                    " - Pilih satu daripada 3 permainan.";
+
+
+                selectedBook.PERMAINANs.forEach(
+                    function (PERMAINAN, index) {
+
+
+                        const card =
+                            document.createElement("div");
+
+
+                        card.className =
+                            "PERMAINAN-card";
+
+
+                        /* GAMBAR PERMAINAN */
+
+                        const imagePath =
+                            getGameImage(
+                                PERMAINAN.title,
+                                selectedBook.title,
+                                index
+                            );
+
+
+                        card.innerHTML = `
+
+                            <div class="PERMAINAN-card-content">
+
+                                <img
+                                    src="${imagePath || ''}"
+                                    class="PERMAINAN-image"
+                                    alt="Gambar ${PERMAINAN.title}"
+                                    style="${imagePath ? '' : 'display:none;'}"
+                                >
+
+                                <div
+                                    class="PERMAINAN-icon"
+                                    style="display:${imagePath ? 'none' : 'flex'};"
+                                >
+                                    🎮
+                                </div>
+
+                                <h2>
+                                    ${PERMAINAN.title}
+                                </h2>
+
+                            </div>
+
+                            <button
+                                class="PERMAINAN-btn"
+                                type="button"
+                            >
+                                MAIN PERMAINAN ${index + 1}
+                            </button>
+
+                        `;
+
+
+                        const gameImage =
+                            card.querySelector(
+                                ".PERMAINAN-image"
+                            );
+
+
+                        gameImage.addEventListener(
+                            "error",
+                            function () {
+
+                                gameImage.style.display =
+                                    "none";
+
+
+                                gameImage
+                                    .nextElementSibling
+                                    .style.display =
+                                        "flex";
+
+                            }
+                        );
+
+
+                        card
+                            .querySelector(".PERMAINAN-btn")
+                            .addEventListener(
+                                "click",
+                                function () {
+
+
+                                    sessionStorage.setItem(
+                                        "selectedPERMAINANTitle",
+                                        PERMAINAN.title
+                                    );
+
+
+                                    sessionStorage.setItem(
+                                        "selectedPERMAINANUrl",
+                                        PERMAINAN.url
+                                    );
+
+
+                                    sessionStorage.setItem(
+                                        "selectedPERMAINANIndex",
+                                        index
+                                    );
+
+
+                                    window.location.href =
+                                        "mainpermainan.html";
+
+                                }
+                            );
+
+
+                        PERMAINANContainer.appendChild(
+                            card
+                        );
+
+                    }
+                );
+
+            }
+
+        }
+
+
+        /* ========================================
+           SISTEM MUZIK BERSAMBUNG
+        ======================================== */
+
+        const backgroundMusic =
+            document.getElementById("backgroundMusic");
+
+
+        const musicButton =
+            document.getElementById("musicButton");
+
+
+        backgroundMusic.loop = true;
+
+        backgroundMusic.volume = 0.4;
+
+
+        /* AMBIL STATUS MUZIK */
+
+        const musicEnabled =
+            sessionStorage.getItem("musicEnabled");
+
+
+        /* AMBIL MASA LAGU SEBELUM PINDAH PAGE */
+
+        const savedMusicTime =
+            sessionStorage.getItem("musicTime");
+
+
+        if (savedMusicTime) {
+
+            backgroundMusic.addEventListener(
+                "loadedmetadata",
+                function () {
+
+                    backgroundMusic.currentTime =
+                        parseFloat(savedMusicTime);
+
+                },
+                {
+                    once: true
+                }
+            );
+
+        }
+
+
+        /* MAIN MUZIK */
+
+        if (musicEnabled !== "false") {
+
+            backgroundMusic.play()
+
+                .then(function () {
+
+                    musicButton.innerHTML = "🔊";
+
+                    sessionStorage.setItem(
+                        "musicEnabled",
+                        "true"
+                    );
+
+                })
+
+                .catch(function () {
+
+                    musicButton.innerHTML = "🔇";
+
+                });
+
+        } else {
+
+            musicButton.innerHTML = "🔇";
+
+        }
+
+
+        /* SIMPAN MASA MUZIK SEMASA */
+
+        setInterval(function () {
+
+            if (!backgroundMusic.paused) {
+
+                sessionStorage.setItem(
+                    "musicTime",
+                    backgroundMusic.currentTime
+                );
+
+            }
+
+        }, 500);
+
+
+        /* BUTANG ON / OFF */
+
+        musicButton.addEventListener(
+            "click",
+            function () {
+
+
+                if (backgroundMusic.paused) {
+
+                    backgroundMusic.play();
+
+                    musicButton.innerHTML = "🔊";
+
+                    sessionStorage.setItem(
+                        "musicEnabled",
+                        "true"
+                    );
+
+                } else {
+
+                    backgroundMusic.pause();
+
+                    musicButton.innerHTML = "🔇";
+
+                    sessionStorage.setItem(
+                        "musicEnabled",
+                        "false"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* SIMPAN MASA SEBELUM KELUAR PAGE */
+
+        window.addEventListener(
+            "beforeunload",
+            function () {
+
+                sessionStorage.setItem(
+                    "musicTime",
+                    backgroundMusic.currentTime
+                );
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

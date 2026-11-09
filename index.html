@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>KIT BUDI - Pengembaraan Cerita Rakyat</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+
+        .home-page {
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+
+            position: relative;
+            overflow: hidden;
+
+            background: #f8f1df;
+        }
+
+
+        /* ===============================
+           LOGO
+        =============================== */
+
+        .logo-container {
+            position: absolute;
+
+            top: 18px;
+            left: 25px;
+
+            z-index: 10;
+        }
+
+
+        .logo {
+            width: 90px;
+            height: auto;
+
+            display: block;
+        }
+
+
+        /* ===============================
+           BUTANG MUZIK
+        =============================== */
+
+        .music-button {
+            position: absolute;
+
+            top: 20px;
+            right: 30px;
+
+            z-index: 20;
+
+            width: 85px;
+            height: 85px;
+
+            border: none;
+            border-radius: 50%;
+
+            padding: 0;
+
+            background: #2f7d65;
+            color: white;
+
+            font-size: 38px;
+
+            cursor: pointer;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transition: transform 0.2s ease;
+        }
+
+
+        .music-button:hover {
+            transform: scale(1.1);
+        }
+
+
+        /* ===============================
+           GAMBAR UTAMA
+        =============================== */
+
+        .home-content {
+            width: 100%;
+            height: 100vh;
+
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .adventure-image {
+            width: 100%;
+            height: 100vh;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* ===============================
+           BUTANG MULA PENGEMBARAAN
+        =============================== */
+
+        .start-button {
+            position: absolute;
+
+            bottom: 25px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            border: none;
+            border-radius: 40px;
+
+            padding: 36px 84px;
+
+            background: #f36f52;
+            color: white;
+
+            font-size: 34px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            z-index: 10;
+
+            white-space: nowrap;
+
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+
+            transition: transform 0.2s ease;
+        }
+
+
+        .start-button:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+
+
+        /* ===============================
+           TABLET
+        =============================== */
+
+        @media (max-width: 1000px) {
+
+            .music-button {
+                width: 70px;
+                height: 70px;
+
+                font-size: 30px;
+            }
+
+
+            .start-button {
+                padding: 28px 55px;
+                font-size: 27px;
+            }
+
+        }
+
+
+        /* ===============================
+           TELEFON
+        =============================== */
+
+        @media (max-width: 768px) {
+
+            .logo-container {
+                top: 12px;
+                left: 15px;
+            }
+
+
+            .logo {
+                width: 65px;
+            }
+
+
+            .music-button {
+                top: 15px;
+                right: 15px;
+
+                width: 55px;
+                height: 55px;
+
+                font-size: 25px;
+            }
+
+
+            .start-button {
+                bottom: 20px;
+
+                width: calc(100% - 40px);
+                max-width: 420px;
+
+                padding: 20px 18px;
+
+                font-size: 21px;
+
+                white-space: normal;
+
+                line-height: 1.3;
+            }
+
+        }
+
+
+        /* ===============================
+           TELEFON KECIL
+        =============================== */
+
+        @media (max-width: 400px) {
+
+            .logo {
+                width: 55px;
+            }
+
+
+            .music-button {
+                width: 50px;
+                height: 50px;
+
+                font-size: 22px;
+            }
+
+
+            .start-button {
+                font-size: 18px;
+                padding: 17px 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="home-page">
+
+
+        <!-- ===============================
+             LOGO KIT BUDI
+        =============================== -->
+
+        <div class="logo-container">
+
+            <img
+                src="assets/images/logo-kit-budi.jpg"
+                alt="Logo KIT BUDI"
+                class="logo"
+            >
+
+        </div>
+
+
+        <!-- ===============================
+             BUTANG MUZIK
+        =============================== -->
+
+        <button
+            id="musicButton"
+            class="music-button"
+            type="button"
+            aria-label="Muzik"
+        >
+            🔊
+        </button>
+
+
+        <!-- ===============================
+             MUZIK LATAR KIT BUDI
+        =============================== -->
+
+        <audio
+            id="backgroundMusic"
+            src="assets/audio/lagu-kit-budi.mp3"
+            loop
+            preload="auto"
+        ></audio>
+
+
+        <!-- ===============================
+             GAMBAR UTAMA
+        =============================== -->
+
+        <div class="home-content">
+
+            <img
+                src="https://lh3.googleusercontent.com/d/1Yi9jnO2YcAM9acSlGIiHrWTnmgs2Plg1"
+                alt="Pengembaraan Budi Menelusuri Cerita Rakyat"
+                class="adventure-image"
+            >
+
+
+            <!-- BUTANG MULA PENGEMBARAAN -->
+
+            <button
+                id="startButton"
+                class="start-button"
+                type="button"
+            >
+                🚀 MULA PENGEMBARAAN
+            </button>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- ===============================
+         JAVASCRIPT DATA
+    =============================== -->
+
+    <script src="js/data.js"></script>
+
+
+    <!-- ===============================
+         SISTEM MUZIK & NAVIGASI
+    =============================== -->
+
+    <script>
+
+        const backgroundMusic =
+            document.getElementById("backgroundMusic");
+
+        const musicButton =
+            document.getElementById("musicButton");
+
+        const startButton =
+            document.getElementById("startButton");
+
+
+        /* ===============================
+           TETAPAN MUZIK
+        =============================== */
+
+        backgroundMusic.loop = true;
+        backgroundMusic.volume = 0.4;
+
+
+        /* ===============================
+           AMBIL STATUS SEBELUM INI
+        =============================== */
+
+        const savedMusicTime =
+            sessionStorage.getItem("musicTime");
+
+        const savedMusicStatus =
+            sessionStorage.getItem("musicStatus");
+
+
+        /* ===============================
+           MUZIK SIAP LOAD
+        =============================== */
+
+        backgroundMusic.addEventListener(
+            "loadedmetadata",
+            function () {
+
+                /* Jika datang dari page lain,
+                   sambung pada masa terakhir */
+
+                if (savedMusicTime !== null) {
+
+                    const savedTime =
+                        parseFloat(savedMusicTime);
+
+                    if (
+                        !isNaN(savedTime) &&
+                        savedTime < backgroundMusic.duration
+                    ) {
+
+                        backgroundMusic.currentTime =
+                            savedTime;
+
+                    }
+
+                }
+
+
+                /* Main muzik jika tidak dimatikan */
+
+                if (savedMusicStatus !== "off") {
+
+                    backgroundMusic.play()
+
+                        .then(function () {
+
+                            musicButton.innerHTML = "🔊";
+
+                            sessionStorage.setItem(
+                                "musicStatus",
+                                "on"
+                            );
+
+                        })
+
+                        .catch(function (error) {
+
+                            console.log(
+                                "Autoplay disekat oleh browser:",
+                                error
+                            );
+
+                            musicButton.innerHTML = "🔇";
+
+                        });
+
+                }
+
+                else {
+
+                    musicButton.innerHTML = "🔇";
+
+                }
+
+            }
+        );
+
+
+        /* ===============================
+           SENTIASA SIMPAN MASA MUZIK
+        =============================== */
+
+        setInterval(function () {
+
+            if (!backgroundMusic.paused) {
+
+                sessionStorage.setItem(
+                    "musicTime",
+                    backgroundMusic.currentTime
+                );
+
+                sessionStorage.setItem(
+                    "musicStatus",
+                    "on"
+                );
+
+            }
+
+        }, 200);
+
+
+        /* ===============================
+           SIMPAN SEBELUM TUKAR PAGE
+        =============================== */
+
+        function saveMusicState() {
+
+            sessionStorage.setItem(
+                "musicTime",
+                backgroundMusic.currentTime
+            );
+
+            sessionStorage.setItem(
+                "musicStatus",
+                backgroundMusic.paused
+                    ? "off"
+                    : "on"
+            );
+
+        }
+
+
+        window.addEventListener(
+            "beforeunload",
+            function () {
+
+                saveMusicState();
+
+            }
+        );
+
+
+        /* ===============================
+           BUTTON MUZIK
+        =============================== */
+
+        musicButton.addEventListener(
+            "click",
+            function () {
+
+                if (backgroundMusic.paused) {
+
+                    backgroundMusic.play()
+
+                        .then(function () {
+
+                            musicButton.innerHTML = "🔊";
+
+                            sessionStorage.setItem(
+                                "musicStatus",
+                                "on"
+                            );
+
+                        })
+
+                        .catch(function (error) {
+
+                            console.log(
+                                "Muzik tidak dapat dimainkan:",
+                                error
+                            );
+
+                        });
+
+                }
+
+                else {
+
+                    backgroundMusic.pause();
+
+                    musicButton.innerHTML = "🔇";
+
+                    sessionStorage.setItem(
+                        "musicStatus",
+                        "off"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* ===============================
+           MULA PENGEMBARAAN
+        =============================== */
+
+        startButton.addEventListener(
+            "click",
+            function () {
+
+                saveMusicState();
+
+                window.location.href =
+                    "biodata.html";
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

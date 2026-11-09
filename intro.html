@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>KIT BUDI - Video Pengenalan</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =========================================
+           BACKGROUND
+        ========================================= */
+
+        .intro-page {
+
+            width: 100%;
+            min-height: 100vh;
+
+            padding: 20px 4%;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.12),
+                    rgba(255, 255, 255, 0.12)
+                ),
+                url("assets/images/background-videointrorendah.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            display: flex;
+            flex-direction: column;
+
+            position: relative;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .intro-header {
+
+            width: 100%;
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .intro-logo {
+
+            width: 110px;
+            height: auto;
+
+            display: block;
+        }
+
+
+        /* =========================================
+           KANDUNGAN UTAMA
+        ========================================= */
+
+        .intro-content {
+
+            width: 100%;
+            max-width: 1700px;
+
+            flex: 1;
+
+            margin: 0 auto;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+
+            z-index: 2;
+
+            padding: 10px 0 20px;
+        }
+
+
+        /* =========================================
+           TAJUK
+        ========================================= */
+
+        .intro-content h1 {
+
+            color: #263b70;
+
+            font-size: clamp(28px, 2.5vw, 46px);
+
+            margin: 10px 0 8px;
+
+            text-align: center;
+
+            text-shadow:
+                0 2px 5px rgba(255, 255, 255, 0.9);
+        }
+
+
+        .intro-description {
+
+            color: #444;
+
+            font-size: clamp(15px, 1.2vw, 20px);
+
+            line-height: 1.6;
+
+            margin: 0 0 20px;
+
+            text-align: center;
+
+            text-shadow:
+                0 1px 4px rgba(255, 255, 255, 0.9);
+        }
+
+
+        /* =========================================
+           LAYOUT VIDEO + BUTTON
+        ========================================= */
+
+        .video-layout {
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: row;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: clamp(25px, 3vw, 55px);
+
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+           BAHAGIAN VIDEO - KIRI
+        ========================================= */
+
+        .video-container {
+
+            width: 70%;
+
+            max-width: 1150px;
+
+            background: #000;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.25);
+
+            position: relative;
+
+            flex-shrink: 1;
+        }
+
+
+        .intro-video {
+
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+
+            max-height: 70vh;
+
+            background: #000;
+
+            object-fit: contain;
+        }
+
+
+        /* =========================================
+           MESEJ VIDEO ERROR
+        ========================================= */
+
+        .video-error {
+
+            display: none;
+
+            width: 70%;
+
+            padding: 25px;
+
+            background: #fff0e8;
+
+            color: #a33b20;
+
+            border: 1px solid #e9b9a8;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           BUTTON - KANAN
+        ========================================= */
+
+        .intro-buttons {
+
+            width: 30%;
+
+            max-width: 430px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: stretch;
+
+            gap: 22px;
+
+            margin: 0;
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        /* =========================================
+           BUTANG
+        ========================================= */
+
+        .intro-button {
+
+            width: 100%;
+
+            min-height: 80px;
+
+            padding: 20px 25px;
+
+            border: none;
+
+            border-radius: 40px;
+
+            color: white;
+
+            font-weight: bold;
+
+            font-size: clamp(18px, 1.6vw, 27px);
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            line-height: 1.25;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 12px rgba(0, 0, 0, 0.18);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        /* =========================================
+           WARNA BUTTON
+        ========================================= */
+
+        .home-button {
+            background: #e49b35;
+        }
+
+
+        .back-button {
+            background: #777;
+        }
+
+
+        .next-button {
+            background: #36a653;
+        }
+
+
+        /* =========================================
+           HOVER
+        ========================================= */
+
+        .intro-button:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.03);
+
+            box-shadow:
+                0 8px 18px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .home-button:hover {
+            background: #c77d1d;
+        }
+
+
+        .back-button:hover {
+            background: #555;
+        }
+
+
+        .next-button:hover {
+            background: #25813d;
+        }
+
+
+        /* =========================================
+           TABLET
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .intro-page {
+                padding: 20px 3%;
+                background-attachment: scroll;
+            }
+
+
+            .intro-logo {
+                width: 90px;
+            }
+
+
+            .video-layout {
+
+                gap: 20px;
+            }
+
+
+            .video-container {
+                width: 65%;
+            }
+
+
+            .intro-buttons {
+                width: 35%;
+            }
+
+
+            .intro-button {
+
+                min-height: 68px;
+
+                padding: 16px 15px;
+
+                font-size: clamp(15px, 2vw, 22px);
+            }
+
+        }
+
+
+        /* =========================================
+           TABLET KECIL
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .intro-content h1 {
+                font-size: 28px;
+            }
+
+
+            .intro-description {
+                font-size: 16px;
+            }
+
+
+            /* Tukar kepada susunan atas bawah */
+
+            .video-layout {
+
+                flex-direction: column;
+
+                align-items: center;
+
+                gap: 25px;
+            }
+
+
+            .video-container {
+
+                width: 100%;
+
+                max-width: 900px;
+            }
+
+
+            .intro-buttons {
+
+                width: 100%;
+
+                max-width: 700px;
+
+                flex-direction: row;
+
+                align-items: stretch;
+
+                justify-content: center;
+
+                gap: 12px;
+            }
+
+
+            .intro-button {
+
+                min-height: 65px;
+
+                padding: 15px 10px;
+
+                font-size: 15px;
+            }
+
+
+            .video-error {
+                width: 100%;
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            .intro-page {
+
+                padding: 15px;
+
+                background-attachment: scroll;
+            }
+
+
+            .intro-logo {
+                width: 75px;
+            }
+
+
+            .intro-content {
+
+                justify-content: flex-start;
+
+                padding-top: 10px;
+            }
+
+
+            .intro-content h1 {
+
+                font-size: 24px;
+
+                margin-top: 10px;
+            }
+
+
+            .intro-description {
+
+                font-size: 14px;
+
+                line-height: 1.6;
+            }
+
+
+            .video-layout {
+
+                flex-direction: column;
+
+                gap: 20px;
+            }
+
+
+            .video-container {
+
+                width: 100%;
+
+                border-radius: 15px;
+            }
+
+
+            .intro-video {
+
+                width: 100%;
+
+                height: auto;
+
+                max-height: 55vh;
+            }
+
+
+            .intro-buttons {
+
+                width: 100%;
+
+                max-width: 420px;
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            .intro-button {
+
+                width: 100%;
+
+                min-height: 58px;
+
+                padding: 18px;
+
+                font-size: 18px;
+            }
+
+
+            .video-error {
+
+                width: 100%;
+
+                font-size: 14px;
+            }
+
+        }
+
+
+        /* =========================================
+           TELEFON KECIL
+        ========================================= */
+
+        @media (max-width: 400px) {
+
+            .intro-button {
+
+                min-height: 55px;
+
+                font-size: 15px;
+
+                padding: 15px 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="intro-page">
+
+
+        <!-- =====================================
+             HEADER
+        ====================================== -->
+
+        <header class="intro-header">
+
+            <img
+                src="assets/images/logo-kit-budi.jpg"
+                alt="Logo KIT BUDI"
+                class="intro-logo"
+            >
+
+        </header>
+
+
+
+        <!-- =====================================
+             KANDUNGAN UTAMA
+        ====================================== -->
+
+        <section class="intro-content">
+
+
+            <!-- TAJUK -->
+
+            <h1 id="levelTitle">
+
+                VIDEO PENGENALAN
+
+            </h1>
+
+
+            <!-- PENERANGAN -->
+
+            <p
+                class="intro-description"
+                id="levelDescription"
+            >
+
+                Tonton video pengenalan sebelum meneruskan pengembaraan.
+
+            </p>
+
+
+
+            <!-- =====================================
+                 VIDEO KIRI + BUTTON KANAN
+            ====================================== -->
+
+            <div class="video-layout">
+
+
+                <!-- VIDEO -->
+
+                <div
+                    class="video-container"
+                    id="videoContainer"
+                >
+
+                    <video
+                        id="introVideo"
+                        class="intro-video"
+                        controls
+                        playsinline
+                        preload="metadata"
+                    >
+
+                        Browser anda tidak menyokong video.
+
+                    </video>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     3 BUTTON SEBELAH KANAN
+                ====================================== -->
+
+                <div class="intro-buttons">
+
+
+                    <!-- HALAMAN UTAMA -->
+
+                    <button
+                        class="intro-button home-button"
+                        type="button"
+                        onclick="window.location.href='index.html'"
+                    >
+
+                        🏠 HALAMAN UTAMA
+
+                    </button>
+
+
+
+                    <!-- KEMBALI RAK BUKU -->
+
+                    <button
+                        class="intro-button back-button"
+                        type="button"
+                        onclick="window.location.href='rakbuku.html'"
+                    >
+
+                        ↩ KEMBALI KE RAK BUKU
+
+                    </button>
+
+
+
+                    <!-- TERUSKAN -->
+
+                    <button
+                        class="intro-button next-button"
+                        type="button"
+                        onclick="goToBooks()"
+                    >
+
+                        ➡️ TERUSKAN KE PILIH BUKU
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =====================================
+                 MESEJ JIKA VIDEO TIDAK DIJUMPAI
+            ====================================== -->
+
+            <div
+                class="video-error"
+                id="videoError"
+            >
+
+                Video tidak dapat dipaparkan.
+
+                Sila pastikan fail video berada dalam folder
+                <strong>videos</strong>
+                dan nama fail adalah betul.
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script>
+
+
+        /* =====================================
+           AMBIL TAHAP PEMBELAJARAN
+        ====================================== */
+
+        const selectedLevel =
+            sessionStorage.getItem("selectedLevel");
+
+
+        const video =
+            document.getElementById("introVideo");
+
+
+        const title =
+            document.getElementById("levelTitle");
+
+
+        const description =
+            document.getElementById("levelDescription");
+
+
+        const videoContainer =
+            document.getElementById("videoContainer");
+
+
+        const videoError =
+            document.getElementById("videoError");
+
+
+
+        /* =====================================
+           TETAPKAN VIDEO MENGIKUT TAHAP
+        ====================================== */
+
+        if (selectedLevel === "rendah") {
+
+            title.textContent =
+                "🌱 VIDEO PENGENALAN - TAHAP RENDAH";
+
+
+            description.textContent =
+                "Tonton video pengenalan Tahap Rendah sebelum memilih buku cerita.";
+
+
+            video.src =
+                "assets/videos/introRENDAH.MP4";
+
+        }
+
+
+        else if (selectedLevel === "sederhana") {
+
+            title.textContent =
+                "🌳 VIDEO PENGENALAN - TAHAP SEDERHANA";
+
+
+            description.textContent =
+                "Tonton video pengenalan Tahap Sederhana sebelum memilih buku cerita.";
+
+
+            video.src =
+                "assets/videos/introSEDERHANA.mp4";
+
+        }
+
+
+        else {
+
+            title.textContent =
+                "TAHAP BELUM DIPILIH";
+
+
+            description.textContent =
+                "Sila kembali ke Rak Buku dan pilih tahap pembelajaran.";
+
+
+            videoContainer.style.display =
+                "none";
+
+
+            videoError.style.display =
+                "block";
+
+        }
+
+
+
+        /* =====================================
+           MUATKAN VIDEO
+        ====================================== */
+
+        if (
+
+            selectedLevel === "rendah" ||
+
+            selectedLevel === "sederhana"
+
+        ) {
+
+            video.load();
+
+        }
+
+
+
+        /* =====================================
+           SEMAK JIKA VIDEO TIDAK DAPAT DIMUATKAN
+        ====================================== */
+
+        video.addEventListener(
+            "error",
+
+            function () {
+
+                videoContainer.style.display =
+                    "none";
+
+
+                videoError.style.display =
+                    "block";
+
+            }
+
+        );
+
+
+
+        /* =====================================
+           TERUSKAN KE PILIH BUKU
+        ====================================== */
+
+        function goToBooks() {
+
+
+            if (!selectedLevel) {
+
+
+                alert(
+                    "Sila pilih tahap pembelajaran terlebih dahulu."
+                );
+
+
+                window.location.href =
+                    "rakbuku.html";
+
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "pilihbuku.html";
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
